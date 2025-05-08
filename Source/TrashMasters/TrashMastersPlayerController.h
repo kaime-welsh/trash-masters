@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Kaime Welsh, all rights reserved.
 
 #pragma once
 
@@ -6,15 +6,15 @@
 #include "GameFramework/PlayerController.h"
 #include "TrashMastersPlayerController.generated.h"
 
+class UAbilitySystemComponent;
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionInstance;
 
 UCLASS()
-class TRASHMASTERS_API ATrashMastersPlayerController : public APlayerController
-{
+class TRASHMASTERS_API ATrashMastersPlayerController : public APlayerController {
 	GENERATED_BODY()
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UInputMappingContext> InputMapping;
 
@@ -41,17 +41,20 @@ class TRASHMASTERS_API ATrashMastersPlayerController : public APlayerController
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UInputAction> SecondaryAction;
+	
+	void TryInitializeGAS();
 
 protected:
 	void OnMove(const FInputActionInstance& Instance);
 	void OnLook(const FInputActionInstance& Instance);
-	void OnCrouch(const FInputActionInstance& Instance);
-	void OnJump(const FInputActionInstance& Instance);
-	void OnSprint(const FInputActionInstance& Instance);
-	void OnInteract(const FInputActionInstance& Instance);
-	void OnPrimary(const FInputActionInstance& Instance);
-	void OnSecondary(const FInputActionInstance& Instance);
 
+	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
-	
+	virtual void OnPossess(APawn* InPawn) override;
+
+	virtual void OnRep_PlayerState() override;
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "AbilitySystem")
+	UAbilitySystemComponent* GetAbilitySystemComponent() const;
 };

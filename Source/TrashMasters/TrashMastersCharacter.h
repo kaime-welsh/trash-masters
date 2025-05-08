@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Kaime Welsh, all rights reserved.
 
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
 #include "TrashMastersCharacter.generated.h"
 
@@ -11,29 +12,24 @@ class UInputMappingContext;
 class UInputAction;
 
 UCLASS()
-class TRASHMASTERS_API ATrashMastersCharacter : public ACharacter {
+class TRASHMASTERS_API ATrashMastersCharacter : public ACharacter, public IAbilitySystemInterface {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this character's properties
-	ATrashMastersCharacter();
-
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+	
+	void InitializeAbilityActorInfo();
 	
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	ATrashMastersCharacter();
 	
-	// Called by controller
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	
+	virtual void Tick(float DeltaTime) override;
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+	
 	void Move(const FVector& Value);
 	void Look(const FVector& Value);
-	void Sprint();
-	void StopSprinting();
-	void Interact();
-	void UsePrimary();
-	void UseSecondary();
 };
