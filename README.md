@@ -15,10 +15,10 @@
     - [ ] Walk Speed
     - [ ] Sprint Speed
     - [ ] Jump strength
-  - [ ] Movement abilities
-    - [ ] Jumping
-    - [ ] Crouching
-    - [ ] Sprinting
+  - [x] Movement abilities
+    - [x] Jumping
+    - [x] Crouching
+    - [x] Sprinting
   - [ ] Interaction abilities
     - [ ] Use Primary (Left Hand/Click)
     - [ ] Use Secondary (Right Hand/Click)
