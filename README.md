@@ -10,12 +10,12 @@
   - Walk Speed
   - Sprint Speed
   - Jump strength
-  - Jump control
+  - Jump air control
 - [ ] Implement Abilities using GAS:
-  - Movement abilities (Not sure if these should be abilities realistically, but we'll go withj it for now):
+  - Movement abilities (Not sure if these should be abilities realistically, but we'll go with it for now):
     - [x] Jumping
-    - [ ] Crouching 
-    - [ ] Sprinting
+    - [x] Crouching 
+    - [x] Sprinting
     - [ ] Sliding
     - [ ] Vaulting
   - Interaction abilities
