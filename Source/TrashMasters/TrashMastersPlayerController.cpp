@@ -29,7 +29,7 @@ UAbilitySystemComponent* ATrashMastersPlayerController::GetAbilitySystemComponen
 void ATrashMastersPlayerController::TryInitializeGAS() {
 	auto PlayerPawn = Cast<ATrashMastersCharacter>(GetPawn());
 	if (IsValid(PlayerPawn))
-	{
+	{	
 		GetAbilitySystemComponent()->RefreshAbilityActorInfo();
 	}
 }
@@ -45,7 +45,7 @@ void ATrashMastersPlayerController::OnRep_PlayerState() {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///Input Functions
+// Input Functions
 void ATrashMastersPlayerController::OnMove(const FInputActionInstance& Instance) {
 	const FVector Value = Instance.GetValue().Get<FVector>();
 	if (const auto TrashCharacter = Cast<ATrashMastersCharacter>(GetPawn())) { TrashCharacter->Move(Value); }
