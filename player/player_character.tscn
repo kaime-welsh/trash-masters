@@ -11,21 +11,27 @@ radius = 0.4
 height = 1.7
 
 [node name="PlayerCharacter" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("1_1v1wt")
-run_speed = 8.0
-jump_power = 4.5
-crouch_height = 1.0
+metadata/_custom_type_script = "uid://bxj8chtb30kec"
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_1v1wt")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_kqu6x")
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="Head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="CrouchCheck" type="RayCast3D" parent="."]
 unique_name_in_owner = true
