@@ -1,12 +1,14 @@
-[gd_scene load_steps=21 format=4 uid="uid://dp57v1dgar82h"]
+[gd_scene load_steps=28 format=4 uid="uid://dp57v1dgar82h"]
 
-[ext_resource type="PackedScene" uid="uid://b725dpq15ws1s" path="res://player/player_character.tscn" id="1_kxtt2"]
+[ext_resource type="PackedScene" uid="uid://b725dpq15ws1s" path="res://player/player.tscn" id="1_kxtt2"]
 [ext_resource type="LightmapGIData" uid="uid://cfbogwur2hy2x" path="res://maps/tm_sandbox.lmbake" id="1_wkrnl"]
 [ext_resource type="Material" uid="uid://qdv3a4224o5o" path="res://assets/materials/kenny_prototype/m_white_checker.tres" id="2_sjpsp"]
 [ext_resource type="Material" uid="uid://dwffsycchev6n" path="res://assets/materials/kenny_prototype/m_orange_wall.tres" id="3_sjpsp"]
 [ext_resource type="Material" uid="uid://djx73r5q1335t" path="res://assets/materials/kenny_prototype/m_black_grid.tres" id="4_sjpsp"]
 [ext_resource type="Material" uid="uid://jioaq1ij40os" path="res://assets/materials/kenny_prototype/m_black_checker.tres" id="5_sjpsp"]
+[ext_resource type="Texture2D" uid="uid://dtxpnk7e0xw1n" path="res://assets/textures/kenny_prototype/Orange/texture_01.png" id="6_babrm"]
 [ext_resource type="Material" uid="uid://vcgt834b4iir" path="res://assets/materials/kenny_prototype/m_purple_checker.tres" id="7_sjpsp"]
+[ext_resource type="Script" uid="uid://cc0jt0ogxqwro" path="res://triggers/world_bottom.gd" id="9_g6f3d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kxtt2"]
 
@@ -41,6 +43,10 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("AABwwgAAAL8AAKhCAABwwgAAAL8AAKjCAABwwgAAAD8AAKjCAABwQgAAAL8AAKjCAABwwgAAAL8AAKjCAABwwgAAAL8AAKhCAABwwgAAAD8AAKjCAABwwgAAAL8AAKjCAABwQgAAAL8AAKjCAABwwgAAAD8AAKhCAABwwgAAAL8AAKhCAABwwgAAAD8AAKhCAABwQgAAAD8AAKhCAABwQgAAAD8AAKhCAABwwgAAAD8AAKhCAABwwgAAAD8AAKjCAABwQgAAAL8AAKhCAABwQgAAAL8AAKhCAABwQgAAAL8AAKjCAABwQgAAAL8AAKhCAABwQgAAAD8AAKhCAABwQgAAAD8AAKjCAABwQgAAAD8AAKjCAABwQgAAAD8AAKjCAAAAgP9//n8AAACA/3/+fwAAAID/f/5/AIAAAP//AAAAgAAA//8AAACAAAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAAAgP9//n//f/9/AAD/P/9//38AAP8//3//fwAA/z8AgP////8AAACA/////wAAAID/////AAAAgAAA//8AAP9//38AAP8///8AgP9//n///wCA/3/+f///AID/f/5//////wAA/z8AgP////8AAP//AID/f/5/")
 }]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g6f3d"]
+friction = 0.8
+bounce = 0.2
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_q2mwn"]
 data = PackedVector3Array(-60, -0.5, 84, -60, -0.5, -84, -60, 0.5, -84, 60, -0.5, -84, -60, -0.5, -84, -60, -0.5, 84, -60, 0.5, -84, -60, -0.5, -84, 60, -0.5, -84, -60, 0.5, -84, -60, 0.5, 84, -60, -0.5, 84, -60, -0.5, 84, -60, 0.5, 84, 60, 0.5, 84, 60, 0.5, 84, -60, 0.5, 84, -60, 0.5, -84, -60, -0.5, 84, 60, -0.5, 84, 60, -0.5, -84, 60, 0.5, 84, 60, -0.5, 84, -60, -0.5, 84, 60, -0.5, -84, 60, -0.5, 84, 60, 0.5, 84, 60, -0.5, -84, 60, 0.5, -84, -60, 0.5, -84, -60, 0.5, -84, 60, 0.5, -84, 60, 0.5, 84, 60, 0.5, 84, 60, 0.5, -84, 60, -0.5, -84)
@@ -96,10 +102,26 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kxtt2"]
 data = PackedVector3Array(-60.5, -0.5, 128.5, -59.5, 36.5, 128.5, -59.5, -0.5, 128.5, -59.5, 36.5, -39.5, -60, 36.5, -40, -59.5, 36.5, -40, -60, 36.5, -40, -59.5, 36.5, 128.5, -60.5, 36.5, -40, -59.5, 36.5, -39.5, -59.5, 36.5, 127.5, -60, 36.5, -40, -60, 36.5, -40, -60.5, 36.5, -40, -60, -0.5, -40, -60.5, 36.5, -40, -60.5, 36.5, 128.5, -60.5, -0.5, 128.5, -59.5, -0.5, 127.5, -59.5, 36.5, 127.5, -59.5, 36.5, -39.5, -60.5, 36.5, 128.5, -59.5, 36.5, 128.5, -60.5, -0.5, 128.5, -59.5, 36.5, 128.5, -60.5, 36.5, 128.5, -60.5, 36.5, -40, -60, 36.5, -40, -59.5, 36.5, 127.5, -59.5, 36.5, 128.5, -60.5, -0.5, 128.5, -59.5, -0.5, 128.5, -59.5, -0.5, 127.5, -59.5, -0.5, 127.5, -59.5, -0.5, -39.5, -60.5, -0.5, 128.5, -60, -0.5, -40, -60.5, -0.5, -40, -60.5, -0.5, 128.5, -59.5, -0.5, -40, -60, -0.5, -40, -60.5, -0.5, 128.5, -60.5, -0.5, 128.5, -59.5, -0.5, -39.5, -59.5, -0.5, -40, -60, -0.5, -40, -60.5, 36.5, -40, -60.5, -0.5, -40, -60.5, 36.5, -40, -60.5, -0.5, 128.5, -60.5, -0.5, -40, -59.5, -0.5, 127.5, -59.5, 36.5, -39.5, -59.5, -0.5, -39.5, 60.5, -0.5, -40, 60, -0.5, -40, 59.5, -0.5, 128.5, 59.5, 36.5, 127.5, 59.5, 36.5, -39.5, 60.5, 36.5, 128.5, 59.5, 36.5, 128.5, 60.5, 36.5, 128.5, 59.5, -0.5, 128.5, 60.5, 36.5, 128.5, 59.5, 36.5, -39.5, 59.5, 36.5, -40, 59.5, -0.5, -39.5, 60, -0.5, -40, 59.5, -0.5, -40, 59.5, -0.5, -39.5, 59.5, -0.5, 127.5, 60, -0.5, -40, 60, 36.5, -40, 60.5, 36.5, 128.5, 59.5, 36.5, -40, 60, -0.5, -40, 60.5, -0.5, -40, 60, 36.5, -40, 60, -0.5, -40, 59.5, -0.5, 127.5, 59.5, -0.5, 128.5, 59.5, -0.5, 128.5, 60.5, -0.5, 128.5, 60.5, -0.5, -40, 59.5, 36.5, 127.5, 59.5, -0.5, 127.5, 59.5, -0.5, -39.5, 60.5, -0.5, 128.5, 60.5, 36.5, 128.5, 60.5, -0.5, -40, 60.5, 36.5, 128.5, 59.5, 36.5, 128.5, 59.5, 36.5, 127.5, 59.5, -0.5, 128.5, 60.5, 36.5, 128.5, 60.5, -0.5, 128.5, 60, 36.5, -40, 60.5, -0.5, -40, 60.5, 36.5, -40, 59.5, 36.5, 127.5, 59.5, -0.5, -39.5, 59.5, 36.5, -39.5, 60.5, 36.5, 128.5, 60.5, 36.5, -40, 60.5, -0.5, -40, 60, 36.5, -40, 60.5, 36.5, -40, 60.5, 36.5, 128.5, -14, 7.5, 127.5, -14, 7.5, 128.5, -49, 7.5, 128.5, -14, 7.5, 127.5, -49, 7.5, 127.5, -59.5, -0.5, 127.5, -49, 10.5, 128.5, -49, 7.5, 127.5, -49, 7.5, 128.5, -49, 7.5, 127.5, -49, 10.5, 127.5, -59.5, -0.5, 127.5, -14, 7.5, 127.5, -49, 7.5, 128.5, -49, 7.5, 127.5, -14, 10.5, 128.5, 59.5, 36.5, 128.5, 59.5, -0.5, 128.5, -49, 10.5, 128.5, -49, 10.5, 127.5, -49, 7.5, 127.5, -59.5, -0.5, 128.5, -59.5, 36.5, 128.5, -49, 7.5, 128.5, -59.5, 36.5, 127.5, -59.5, -0.5, 127.5, -49, 10.5, 127.5, -49, 10.5, 128.5, -14, 10.5, 128.5, -49, 10.5, 127.5, -59.5, -0.5, 128.5, 59.5, -0.5, 128.5, 59.5, -0.5, 127.5, 59.5, -0.5, 128.5, -14, 7.5, 128.5, -14, 10.5, 128.5, -14, 10.5, 127.5, -14, 7.5, 127.5, 59.5, -0.5, 127.5, 59.5, -0.5, 127.5, -59.5, -0.5, 127.5, -59.5, -0.5, 128.5, -59.5, -0.5, 128.5, -49, 7.5, 128.5, 59.5, -0.5, 128.5, -14, 7.5, 127.5, -59.5, -0.5, 127.5, 59.5, -0.5, 127.5, 59.5, -0.5, 127.5, 59.5, 36.5, 127.5, -59.5, 36.5, 127.5, -59.5, 36.5, 127.5, -14, 10.5, 127.5, 59.5, -0.5, 127.5, -14, 10.5, 127.5, -14, 10.5, 128.5, -14, 7.5, 128.5, -49, 10.5, 128.5, -49, 7.5, 128.5, -59.5, 36.5, 128.5, -14, 10.5, 128.5, -14, 10.5, 127.5, -49, 10.5, 127.5, -59.5, 36.5, 127.5, -49, 10.5, 127.5, -14, 10.5, 127.5, -14, 10.5, 128.5, -49, 10.5, 128.5, -59.5, 36.5, 128.5, -49, 7.5, 128.5, -14, 7.5, 128.5, 59.5, -0.5, 128.5, -14, 7.5, 127.5, -14, 10.5, 127.5, -14, 7.5, 128.5, 59.5, 36.5, 128.5, -59.5, 36.5, 128.5, -59.5, 36.5, 127.5, -14, 10.5, 128.5, -59.5, 36.5, 128.5, 59.5, 36.5, 128.5, -59.5, 36.5, 127.5, 59.5, 36.5, 127.5, 59.5, 36.5, 128.5, 60, -0.5, -40.5, -60, 36.5, -40.5, -60, -0.5, -40.5, -59.5, -0.5, -40, -60, -0.5, -40.5, -60, -0.5, -40, 60, -0.5, -40.5, -59.5, -0.5, -40, -59.5, -0.5, -39.5, -59.5, 36.5, -39.5, 59.5, -0.5, -39.5, -59.5, -0.5, -39.5, 59.5, 36.5, -40, 60, 36.5, -40.5, 60, 36.5, -40, -59.5, -0.5, -40, 60, -0.5, -40.5, -60, -0.5, -40.5, -60, 36.5, -40.5, -60, -0.5, -40, -60, -0.5, -40.5, -60, 36.5, -40.5, -59.5, 36.5, -40, -60, 36.5, -40, 60, -0.5, -40.5, 60, 36.5, -40, 60, 36.5, -40.5, -60, 36.5, -40.5, 59.5, 36.5, -40, 59.5, 36.5, -39.5, 59.5, 36.5, -40, -60, 36.5, -40.5, 60, 36.5, -40.5, 60, -0.5, -40.5, 60, 36.5, -40.5, -60, 36.5, -40.5, 59.5, -0.5, -39.5, -59.5, 36.5, -39.5, 59.5, 36.5, -39.5, 60, -0.5, -40, 60, 36.5, -40, 60, -0.5, -40.5, 60, -0.5, -40.5, 59.5, -0.5, -40, 60, -0.5, -40, -59.5, -0.5, -39.5, 59.5, -0.5, -40, 60, -0.5, -40.5, 59.5, -0.5, -39.5, 59.5, -0.5, -40, -59.5, -0.5, -39.5, -59.5, 36.5, -40, 59.5, 36.5, -39.5, -59.5, 36.5, -39.5, 59.5, 36.5, -39.5, -59.5, 36.5, -40, -60, 36.5, -40.5, -60, 36.5, -40.5, -60, 36.5, -40, -60, -0.5, -40)
 
+[sub_resource type="Curve3D" id="Curve3D_sjpsp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 27, -2, 0, -27, 2, 0, -32.4, -20.2, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6f3d"]
+albedo_texture = ExtResource("6_babrm")
+uv1_triplanar = true
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sjpsp"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nkcwq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sjpsp"]
+friction = 0.2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_babrm"]
 
 [node name="tm_sandbox" type="Node3D"]
 
@@ -120,16 +142,19 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2, 0, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 44)
 material_override = ExtResource("2_sjpsp")
 mesh = SubResource("ArrayMesh_kxtt2")
+metadata/_edit_group_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Floor"]
+physics_material_override = SubResource("PhysicsMaterial_g6f3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_q2mwn")
 
 [node name="Building" type="MeshInstance3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1.5)
 material_override = ExtResource("3_sjpsp")
 mesh = SubResource("ArrayMesh_wkrnl")
+metadata/_edit_group_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Building"]
 
@@ -137,17 +162,42 @@ mesh = SubResource("ArrayMesh_wkrnl")
 shape = SubResource("ConcavePolygonShape3D_5rd0h")
 
 [node name="Catwalk" type="MeshInstance3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 material_override = ExtResource("4_sjpsp")
 mesh = SubResource("ArrayMesh_q2mwn")
+metadata/_edit_group_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Catwalk"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Catwalk/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wkrnl")
 
+[node name="Catwalk2" type="MeshInstance3D" parent="Geometry"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.2, 11.8, 86)
+material_override = ExtResource("4_sjpsp")
+mesh = SubResource("ArrayMesh_q2mwn")
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Catwalk2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Catwalk2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wkrnl")
+
+[node name="Catwalk3" type="MeshInstance3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 23.6, 26)
+material_override = ExtResource("4_sjpsp")
+mesh = SubResource("ArrayMesh_q2mwn")
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Catwalk3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Catwalk3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wkrnl")
+
 [node name="OuterWalls" type="MeshInstance3D" parent="Geometry"]
 material_override = ExtResource("5_sjpsp")
 mesh = SubResource("ArrayMesh_5rd0h")
+metadata/_edit_group_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/OuterWalls"]
 
@@ -172,86 +222,126 @@ material_override = ExtResource("4_sjpsp")
 use_collision = true
 size = Vector3(4, 6, 2.6)
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_kxtt2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 41)
-crouch_height = 0.999
+[node name="Path3D" type="Path3D" parent="Geometry"]
+transform = Transform3D(9.555, 0, 0, 0, 9.555, 0, 0, 0, 9.555, -59, 39, 0)
+curve = SubResource("Curve3D_sjpsp")
 
-[node name="Boxen" type="RigidBody3D" parent="."]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Geometry/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272109, 0)
+material_override = SubResource("StandardMaterial3D_g6f3d")
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0.5, 1, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Boxen" type="RigidBody3D" parent="Props"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -6, 0.6, 28)
 collision_layer = 4
 collision_mask = 7
-mass = 10.0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boxen"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxen"]
 shape = SubResource("ConvexPolygonShape3D_sjpsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boxen"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Boxen"]
 material_override = ExtResource("7_sjpsp")
 mesh = SubResource("BoxMesh_nkcwq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Boxen4" type="RigidBody3D" parent="."]
+[node name="Boxen4" type="RigidBody3D" parent="Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.6, 37)
-mass = 10.0
+collision_layer = 4
+collision_mask = 7
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boxen4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxen4"]
 shape = SubResource("ConvexPolygonShape3D_sjpsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boxen4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Boxen4"]
 material_override = ExtResource("7_sjpsp")
 mesh = SubResource("BoxMesh_nkcwq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Boxen6" type="RigidBody3D" parent="."]
+[node name="Boxen6" type="RigidBody3D" parent="Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.6, 35)
-mass = 50.0
+collision_layer = 4
+collision_mask = 7
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boxen6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxen6"]
 shape = SubResource("ConvexPolygonShape3D_sjpsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boxen6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Boxen6"]
 material_override = ExtResource("7_sjpsp")
 mesh = SubResource("BoxMesh_nkcwq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Boxen5" type="RigidBody3D" parent="."]
+[node name="Boxen5" type="RigidBody3D" parent="Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.6, 39)
-mass = 300.0
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_sjpsp")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boxen5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxen5"]
 shape = SubResource("ConvexPolygonShape3D_sjpsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boxen5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Boxen5"]
 material_override = ExtResource("7_sjpsp")
 mesh = SubResource("BoxMesh_nkcwq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Boxen2" type="RigidBody3D" parent="."]
+[node name="Boxen2" type="RigidBody3D" parent="Props"]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -7.7, 0.6, 28)
-mass = 10.0
+collision_layer = 4
+collision_mask = 7
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boxen2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxen2"]
 shape = SubResource("ConvexPolygonShape3D_sjpsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boxen2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Boxen2"]
 material_override = ExtResource("7_sjpsp")
 mesh = SubResource("BoxMesh_nkcwq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Boxen3" type="RigidBody3D" parent="."]
+[node name="Boxen3" type="RigidBody3D" parent="Props"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 1.6, 28)
-mass = 10.0
+collision_layer = 4
+collision_mask = 7
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boxen3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Boxen3"]
 shape = SubResource("ConvexPolygonShape3D_sjpsp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boxen3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Boxen3"]
 material_override = ExtResource("7_sjpsp")
 mesh = SubResource("BoxMesh_nkcwq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_kxtt2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 19.2, 37)
+collision_layer = 2
+collision_mask = 7
+
+[node name="WorldBottom" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("9_g6f3d")
+metadata/_custom_type_script = "uid://cc0jt0ogxqwro"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
+shape = SubResource("WorldBoundaryShape3D_babrm")
+debug_color = Color(0.998565, 0, 0.138656, 0.42)

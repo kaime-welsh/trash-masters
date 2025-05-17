@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b725dpq15ws1s"]
 
-[ext_resource type="Script" uid="uid://bxj8chtb30kec" path="res://player/player_character.gd" id="1_1v1wt"]
+[ext_resource type="Script" uid="uid://bxj8chtb30kec" path="res://player/player_controller.gd" id="1_oul6g"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1v1wt"]
 radius = 0.4
@@ -10,27 +10,28 @@ height = 1.7
 radius = 0.4
 height = 1.7
 
-[node name="PlayerCharacter" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-script = ExtResource("1_1v1wt")
-metadata/_custom_type_script = "uid://bxj8chtb30kec"
+platform_floor_layers = 4294967291
+script = ExtResource("1_oul6g")
+metadata/_custom_type_script = "uid://dvkjypcv3qot"
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("CapsuleMesh_1v1wt")
-skeleton = NodePath("../CollisionShape3D")
+skeleton = NodePath("../BodyCollider")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 current = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="BodyCollider" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="CrouchCheck" type="RayCast3D" parent="."]
