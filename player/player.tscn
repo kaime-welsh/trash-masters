@@ -22,6 +22,9 @@ collision_shape = NodePath("CollisionShape3D")
 head = NodePath("HeadStanding/Head")
 stairs_below_raycast = NodePath("StairsBelowRaycast")
 stairs_ahead_raycast = NodePath("StairsAheadRaycast")
+walk_speed = 6.0
+jump_velocity = 5.5
+crouch_height = 0.75
 metadata/_custom_type_script = "uid://dvkjypcv3qot"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

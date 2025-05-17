@@ -84,9 +84,6 @@ func _save_camera_pos_for_smoothing():
 
 func _snap_down_to_stairs_check() -> void:
 	var did_snap := false
-	# Modified slightly from tutorial. I don't notice any visual difference but I think this is correct.
-	# Since it is called after move_and_slide, _last_frame_was_on_floor should still be current frame number.
-	# After move_and_slide off top of stairs, on floor should then be false. Update raycast incase it's not already.
 	stairs_below_raycast.force_raycast_update()
 	var floor_below: bool = stairs_below_raycast.is_colliding() and not is_surface_too_steep(stairs_below_raycast.get_collision_normal())
 	var was_on_floor_last_frame = Engine.get_physics_frames() == _last_frame_was_on_floor
@@ -102,21 +99,13 @@ func _snap_down_to_stairs_check() -> void:
 
 func _snap_up_stairs_check(delta) -> bool:
 	if not is_on_floor() and not _snapped_to_stairs_last_frame: return false
-	# Don't snap stairs if trying to jump, also no need to check for stairs ahead if not moving
 	if self.velocity.y > 0 or (self.velocity * Vector3(1, 0, 1)).length() == 0: return false
 	var expected_move_motion = self.velocity * Vector3(1, 0, 1) * delta
 	var step_pos_with_clearance = self.global_transform.translated(expected_move_motion + Vector3(0, max_step_height * 2, 0))
-	# Run a body_test_motion slightly above the pos we expect to move to, towards the floor.
-	#  We give some clearance above to ensure there's ample room for the player.
-	#  If it hits a step <= MAX_STEP_HEIGHT, we can teleport the player on top of the step
-	#  along with their intended motion forward.
 	var down_check_result = KinematicCollision3D.new()
 	if (self.test_move(step_pos_with_clearance, Vector3(0, -max_step_height * 2, 0), down_check_result)
 	and (down_check_result.get_collider().is_class("StaticBody3D") or down_check_result.get_collider().is_class("CSGShape3D"))):
 		var step_height = ((step_pos_with_clearance.origin + down_check_result.get_travel()) - self.global_position).y
-		# Note I put the step_height <= 0.01 in just because I noticed it prevented some physics glitchiness
-		# 0.02 was found with trial and error. Too much and sometimes get stuck on a stair. Too little and can jitter if running into a ceiling.
-		# The normal character controller (both jolt & default) seems to be able to handled steps up of 0.1 anyway
 		if step_height > max_step_height or step_height <= 0.01 or (down_check_result.get_position() - self.global_position).y > max_step_height: return false
 		stairs_ahead_raycast.global_position = down_check_result.get_position() + Vector3(0, max_step_height, 0) + expected_move_motion.normalized() * 0.1
 		stairs_ahead_raycast.force_raycast_update()
@@ -221,6 +210,12 @@ func _slide_camera_smooth_back_to_origin(delta):
 	_saved_camera_global_pos = camera_smoother.global_position
 	if camera_smoother.position.y == 0:
 		_saved_camera_global_pos = null # Stop smoothing camera
+
+
+func _process(_delta: float) -> void:
+	# TODO: Remove this later when I add an actual model, this is just for protyping
+	$Mesh.mesh.height = collision_shape.shape.height
+
 
 func _physics_process(delta: float) -> void:
 	wish_dir = self.global_transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
