@@ -16,7 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-NetworkManager="*res://core/network/network_manager.gd"
+NetworkManager="*res://core/globals/network_manager.gd"
+SignalBus="*res://core/globals/signal_bus.gd"
 
 [editor_plugins]
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://dp57v1dgar82h"]
+[gd_scene load_steps=17 format=3 uid="uid://dp57v1dgar82h"]
 
 [ext_resource type="VoxelGIData" uid="uid://5ft8a780pv77" path="res://maps/tm_sandbox.VoxelGI_data.res" id="1_bco2i"]
-[ext_resource type="PackedScene" uid="uid://b725dpq15ws1s" path="res://player/player.tscn" id="1_kxtt2"]
 [ext_resource type="Material" uid="uid://qdv3a4224o5o" path="res://assets/materials/kenny_prototype/m_white_checker.tres" id="2_sjpsp"]
 [ext_resource type="Material" uid="uid://dwffsycchev6n" path="res://assets/materials/kenny_prototype/m_orange_wall.tres" id="3_sjpsp"]
 [ext_resource type="Material" uid="uid://djx73r5q1335t" path="res://assets/materials/kenny_prototype/m_black_grid.tres" id="4_sjpsp"]
@@ -34,6 +33,7 @@ material = ExtResource("7_sjpsp")
 [sub_resource type="BoxShape3D" id="BoxShape3D_eh14g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eh14g"]
+friction = 0.5
 bounce = 0.8
 
 [sub_resource type="SphereMesh" id="SphereMesh_sjpsp"]
@@ -246,7 +246,7 @@ shape = SubResource("BoxShape3D_eh14g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -4)
 collision_layer = 4
 collision_mask = 7
-mass = 0.5
+mass = 0.25
 physics_material_override = SubResource("PhysicsMaterial_eh14g")
 continuous_cd = true
 metadata/_edit_group_ = true
@@ -256,10 +256,6 @@ mesh = SubResource("SphereMesh_sjpsp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Ball"]
 shape = SubResource("SphereShape3D_babrm")
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_kxtt2")]
-collision_layer = 2
-collision_mask = 7
 
 [node name="WorldBarrier" type="Area3D" parent="."]
 collision_layer = 8
@@ -271,3 +267,9 @@ metadata/_custom_type_script = "uid://cc0jt0ogxqwro"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 shape = SubResource("WorldBoundaryShape3D_babrm")
 debug_color = Color(0.998565, 0, 0.138656, 0.42)
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="."]
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="PlayerSpawnPoint"]
+_spawnable_scenes = PackedStringArray("uid://b725dpq15ws1s")
+spawn_path = NodePath("..")

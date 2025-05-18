@@ -1,11 +1,13 @@
 extends Node
 
+var current_map: Node3D = null
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalBus.load_map.connect(_on_load_map)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_load_map(map_name: String) -> void:
+	var level_scene: PackedScene = load("res://maps/%s" + map_name)
+	if level_scene != null:
+		current_map = level_scene.instantiate()
+		%Map.add_child(current_map, true)

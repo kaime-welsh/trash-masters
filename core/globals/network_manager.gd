@@ -1,10 +1,5 @@
 extends Node
 
-signal start_game()
-signal player_connected(peer_id, player_info)
-signal player_disconnected(peer_id)
-signal server_disconnected()
-
 const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1"
 const MAX_CONNECTIONS = 20
@@ -20,7 +15,7 @@ func _ready() -> void:
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
-	multiplayer.server_disconnect.connect(_on_server_disconnected)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 
 func create_game(port: int = PORT, max_connections: int = MAX_CONNECTIONS) -> bool:
@@ -32,7 +27,7 @@ func create_game(port: int = PORT, max_connections: int = MAX_CONNECTIONS) -> bo
 	multiplayer.multiplayer_peer = peer
 	
 	players[1] = player_info
-	player_connected.emit(1, player_info)
+	SignalBus.player_connected.emit(1, player_info)
 
 	return true
 
@@ -63,7 +58,7 @@ func player_loaded() -> void:
 	if multiplayer.is_server():
 		players_loaded += 1
 		if players_loaded == players.size():
-			start_game.emit()
+			SignalBus.start_game.emit()
 			players_loaded = 0
 	
 
@@ -71,7 +66,7 @@ func player_loaded() -> void:
 func _register_player(new_player_info) -> void:
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
-	player_connected.emit(new_player_id, new_player_info)
+	SignalBus.player_connected.emit(new_player_id, new_player_info)
 
 
 ################################################################################
@@ -83,13 +78,13 @@ func _on_peer_connected(peer_id: int) -> void:
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	players.erase(peer_id)
-	player_disconnected.emit(peer_id)
+	SignalBus.player_disconnected.emit(peer_id)
 
 
 func _on_connected_to_server() -> void:
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
-	player_connected.emit(peer_id, player_info)
+	SignalBus.player_connected.emit(peer_id, player_info)
 
 
 func _on_connection_failed() -> void:
@@ -99,4 +94,4 @@ func _on_connection_failed() -> void:
 func _on_server_disconnected() -> void:
 	multiplayer.multiplayer_peer = null
 	players.clear()
-	server_disconnected.emit()
+	SignalBus.server_disconnected.emit()

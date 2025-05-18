@@ -4,3 +4,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_xiose")
+
+[node name="Map" type="Node" parent="."]
+unique_name_in_owner = true
