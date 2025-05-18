@@ -14,9 +14,31 @@ config/name="Trash Masters"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+NetworkManager="*res://core/network/network_manager.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Stairs3D/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "pink",
+"res://core/": "purple",
+"res://entities/": "blue",
+"res://maps/": "teal",
+"res://player/": "green",
+"res://props/": "yellow",
+"res://triggers/": "orange",
+"res://utils/": "red"
+}
+
+[global_group]
+
+prop="Any object that can be interacted with by the player."
 
 [input]
 

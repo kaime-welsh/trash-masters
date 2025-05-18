@@ -203,7 +203,7 @@ material = ExtResource("5_sjpsp")
 
 [node name="Props" type="Node" parent="."]
 
-[node name="Crate" type="RigidBody3D" parent="Props"]
+[node name="Crate" type="RigidBody3D" parent="Props" groups=["prop"]]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -4, 0.5, -11.2)
 collision_layer = 4
 collision_mask = 7
@@ -216,7 +216,7 @@ mesh = SubResource("BoxMesh_bco2i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Crate"]
 shape = SubResource("BoxShape3D_eh14g")
 
-[node name="Crate2" type="RigidBody3D" parent="Props"]
+[node name="Crate2" type="RigidBody3D" parent="Props" groups=["prop"]]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -5.3, 0.5, -11.2)
 collision_layer = 4
 collision_mask = 7
@@ -229,7 +229,7 @@ mesh = SubResource("BoxMesh_bco2i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Crate2"]
 shape = SubResource("BoxShape3D_eh14g")
 
-[node name="Crate3" type="RigidBody3D" parent="Props"]
+[node name="Crate3" type="RigidBody3D" parent="Props" groups=["prop"]]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4.6, 1.6, -11.2)
 collision_layer = 4
 collision_mask = 7
@@ -242,7 +242,7 @@ mesh = SubResource("BoxMesh_bco2i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Crate3"]
 shape = SubResource("BoxShape3D_eh14g")
 
-[node name="Ball" type="RigidBody3D" parent="Props"]
+[node name="Ball" type="RigidBody3D" parent="Props" groups=["prop"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -4)
 collision_layer = 4
 collision_mask = 7
@@ -260,8 +260,6 @@ shape = SubResource("SphereShape3D_babrm")
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_kxtt2")]
 collision_layer = 2
 collision_mask = 7
-walk_speed = 6.0
-crouch_height = 0.75
 
 [node name="WorldBarrier" type="Area3D" parent="."]
 collision_layer = 8
