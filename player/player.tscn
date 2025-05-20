@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://gx5vvr2eii5r"]
+
+[ext_resource type="Script" uid="uid://3eo8trbwuxwu" path="res://player/FpsCharacter.cs" id="1_oul6g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
+
+[node name="FpsCharacter" type="RigidBody3D" node_paths=PackedStringArray("Head", "Camera")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+mass = 80.0
+continuous_cd = true
+script = ExtResource("1_oul6g")
+Head = NodePath("Head")
+Camera = NodePath("Head/Camera3D")
+metadata/_custom_type_script = "uid://3eo8trbwuxwu"
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rkbax")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_oul6g")
